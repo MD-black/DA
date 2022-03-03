@@ -1,0 +1,7 @@
+input, button{
+    margin-left: 10px;
+}
+
+a.dropdown-item, a.nav-link{
+    cursor: pointer;
+}
