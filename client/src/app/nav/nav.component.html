@@ -1,23 +1,24 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
     <div class="container">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">DA</a>
-              
-              <ul class="navbar-nav me-auto mb-2 mb-md-0" *ngIf="accountService.currentUser$ | async">
-                <li class="nav-item">
-                  <a class="nav-link">Matches</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link">Lists</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link">Messages</a>
-                </li>
+            <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/']">DA</a>
+              <ul class="navbar-nav me-auto mb-2 mb-md-0" >
+                <ng-container *ngIf="accountService.currentUser$ | async">
+                  <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/members']">Matches</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/lists']">Lists</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/messages']">Messages</a>
+                  </li>
+                </ng-container>
               </ul>
 
-              <div class="btn-group" dropdown *ngIf="accountService.currentUser$ | async">
+              <div class="btn-group" dropdown *ngIf="(accountService.currentUser$ | async) as user">
                 <a style="text-decoration: none; color: white !important;" id="button-basic" dropdownToggle type="button" class="dropdown-toggle"
-                        aria-controls="dropdown-basic">Welcome UserName<span class="caret"></span>
+                        aria-controls="dropdown-basic">Welcome {{ user.username | titlecase}} <span class="caret"></span>
                 </a>
                 <div id="dropdown-basic" *dropdownMenu class="dropdown-menu"
                     role="menu" aria-labelledby="button-basic">
@@ -39,7 +40,7 @@
                   class="form-control me-2" 
                   type="password" 
                   placeholder="Password">
-                <button class="btn btn-outline-success" type="submit">Login</button>
+                <button class="btn btn-success" type="submit">Login</button>
               </form>
             </div>
           </div>
